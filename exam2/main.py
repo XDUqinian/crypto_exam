@@ -113,7 +113,7 @@ def PlaintextGroup():
             break
     return data
 def CreateEncryptoFile(C):
-    with open("des_encrypto", "w",encoding='UTF-8') as t:
+    with open("des_encrypto.txt", "w",encoding='UTF-8') as t:
         for cipher in C:
             t.write(cipher)
 def CreateDecryptoFile(M):
@@ -124,7 +124,7 @@ def CreateDecryptoFile(M):
     msg=msg[0:msg_len]
     msg=bytes.fromhex(msg)
     msg=msg.decode("utf-8")   
-    with open("des_decrypto", "w",encoding='UTF-8') as t:
+    with open("des_decrypto.txt", "w",encoding='UTF-8') as t:
         t.write(msg)
     
 if __name__ == '__main__':
