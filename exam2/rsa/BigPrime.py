@@ -44,7 +44,7 @@ def createBigPrime():
         True or False -- 表示不确定或不是素数
     '''
     #index大一点才能保证后面的分组够加解密
-    index = 12
+    index = 11
     # 处理一下让最高位是1保证素数够大
     num = 1
     for i in range(index-1):

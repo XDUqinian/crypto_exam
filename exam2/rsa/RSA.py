@@ -34,7 +34,7 @@ def Encrypto(e,n,data):
         cipher=ksm(int('0x'+m,16),e,n)
         cipher=hex(cipher)
         cipher=cipher.replace('0x','')
-        while len(cipher)<5:
+        while len(cipher)<6:
             cipher='0'+cipher
         C.append(cipher)
     CreateEncryptoFile(C)
