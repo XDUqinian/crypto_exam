@@ -1,5 +1,12 @@
 import RSAKeyGenerator as mykey
 def PlaintextGroup():
+    '''
+    返回明文分组
+    input:
+        null 
+    output:
+        data list
+    ''' 
     with open("test.txt", "r",encoding='UTF-8') as t:
         msg=t.read()
     msg = bytes(msg,'UTF-8')
@@ -22,6 +29,15 @@ def PlaintextGroup():
             break
     return data
 def ksm(a,k,mod):
+    '''
+    快速幂
+    input:
+        a -- 底数
+        k -- 幂数
+        mod -- 模数 
+    output:
+        res -- 结果
+    ''' 
     res=1
     while(k>0):	
         if k&1 : res=res*a%mod
@@ -29,6 +45,14 @@ def ksm(a,k,mod):
         k>>=1
     return res%mod
 def Encrypto(e,n,data):
+    '''
+    RSA加密,生成加密文件
+    input:
+        e n -- 公钥
+        data -- 明文list 
+    output:
+        C -- 密文
+    ''' 
     C=[]
     for m in data:
         cipher=ksm(int('0x'+m,16),e,n)
@@ -41,6 +65,14 @@ def Encrypto(e,n,data):
     print(C)
     return C
 def Decrypto(d,n,C):
+    '''
+    RSA解密,生成明文文件
+    input:
+        d,n -- 私钥
+        C -- 密文 
+    output:
+        M -- 明文
+    ''' 
     M=[]
     for cipher in C:
         # msg=ksm(cipher,d,n)
@@ -53,10 +85,20 @@ def Decrypto(d,n,C):
     CreateDecryptoFile(M)
     return M
 def CreateEncryptoFile(C):
+    '''
+    生成加密文件
+    input:
+        C -- 密文
+    ''' 
     with open("rsa_encrypto.txt", "w",encoding='UTF-8') as t:
         for cipher in C:
             t.write(cipher)
 def CreateDecryptoFile(M):
+    '''
+    生成解密文件
+    input:
+        M -- 明文
+    ''' 
     msg=""
     for row in M: msg+=row
     msg_len=len(msg)
