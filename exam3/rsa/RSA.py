@@ -10,9 +10,9 @@ def PlaintextGroup():
     with open("test.txt", "r",encoding='UTF-8') as t:
         msg=t.read()
     msg = bytes(msg,'UTF-8')
-    print(msg)
+    # print(msg)
     msg=msg.hex()
-    print(msg)
+    # print(msg)
     msg_len=len(msg)
     data=[]
     left = 0
@@ -61,6 +61,7 @@ def Encrypto(e,n,data,savepath):
         while len(cipher)<6:
             cipher='0'+cipher
         C.append(cipher)
+    # print(C)
     cipher_text=CreateEncryptoFile(C,savepath)
     print("rsa    加密结果:",cipher_text)
     return cipher_text
@@ -81,6 +82,7 @@ def Decrypto(d,n,C,savepath):
         while len(msg)<5:
             msg='0'+msg
         M.append(msg)
+    # print(M)
     data_text=CreateDecryptoFile(M,savepath)
     return data_text
 def CreateEncryptoFile(C,savepath):
@@ -104,16 +106,20 @@ def CreateDecryptoFile(M,savepath):
     msg=""
     for row in M: msg+=row
     msg_len=len(msg)
-    if msg[-2]=='0': msg_len=len(msg)-int(msg[-1])
+    msg_len=len(msg)-int(msg[-1])
     msg=msg[0:msg_len]
+    # print("here",msg)
     msg=bytes.fromhex(msg)
+    # print(msg)
     msg=msg.decode("utf-8")
     with open(savepath+"/rsa_decrypto.txt","w",encoding="UTF-8") as t:
         t.write(msg)
     return msg
 def RSAEncrypyo(e,n,msg,savepath):
     msg = bytes(msg,'UTF-8')
+    # print(msg)
     msg=msg.hex()
+    # print(msg)
     msg_len=len(msg)
     data=[]
     left = 0
@@ -128,6 +134,7 @@ def RSAEncrypyo(e,n,msg,savepath):
             num+=str(5-msg_len%5)
             data.append(msg[left:msg_len]+num)
             break
+    # print("data",data)
     cipher_text=Encrypto(e,n,data,savepath)
     return cipher_text
 def RSADecrypyo(d,n,msg,savepath):

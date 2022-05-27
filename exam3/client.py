@@ -22,9 +22,12 @@ if __name__ == "__main__":
     filepath=r'I:\homework\crypto_exam\exam3\test.txt'
     # mykey=RSAKeyGenerator.KeyGenerator()
     e,n=174671,1977533
+    d=338627
+    n2=1245287
     key='133457799BBCDFF1'
     data_md5=md5.Encrypto(filepath,savepath)
-    SendtoServer(HOST,PORT,data_md5,'md5')
+    en_md5=RSA.RSAEncrypyo(338627,1245287,data_md5,savepath)
+    SendtoServer(HOST,PORT,en_md5,'md5')
     cipher_key=RSA.RSAEncrypyo(e,n,key,savepath)
     SendtoServer(HOST,PORT,cipher_key,'rsa')
     cipher_text=DES.DesEncrypto(filepath,savepath,int(key,16))

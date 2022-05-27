@@ -11,6 +11,8 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
     override the handle() method to implement communication to the
     client.
     """
+    e=854219
+    n2=1245287
     n=1977533
     d=1114031
     data_md5=''
@@ -46,10 +48,10 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         with open(self.savepath+"/data_md5.txt","r",encoding="UTF-8") as t:
             data_md5=t.read()
         de_text=DES.DesDecrypto(r'I:\homework\crypto_exam\exam3\ReceiveFile\des_encrypto.txt',self.savepath,int(de_key,16))
-        print(de_text)
         de_md5=md5.Encrypto(r'I:\homework\crypto_exam\exam3\ReceiveFile\des_decrypto.txt',self.savepath)
         print("密钥:",de_key)
-        print("解密文本:",de_text)
+        print("解密文本:")
+        print(de_text)
         print("md5:",de_md5)
         if(de_md5==data_md5):print("ok")
         
@@ -60,7 +62,10 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         RSA.RSADecrypyo(d,n,data_rsa,self.savepath)
 
     def md5_Decrypto(self):
-        data_md5=self.data_md5
+        e=self.e
+        n=self.n2
+        en_md5=self.data_md5
+        data_md5=RSA.RSADecrypyo(854219,1245287,en_md5,self.savepath)
         with open(self.savepath+"/data_md5.txt","w",encoding="UTF-8") as t:
             t.write(data_md5)
 if __name__ == "__main__":

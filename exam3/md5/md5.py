@@ -7,7 +7,7 @@ def PlaintextGroup(filepath):
     output:
         data -- 512bit明文分组 list
     '''
-    with open(filepath, "r") as t:
+    with open(filepath, "r",encoding='UTF-8') as t:
         msg=t.read()
     msg = bytes(msg,'UTF-8')
     msg=msg.hex()
